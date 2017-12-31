@@ -1,0 +1,39 @@
+﻿@model MVCLamda.Models.EmployeeViewModel
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+<form id="myForm">
+
+    <div class="form-group">
+        <div class="col-sm-12">
+            @Html.TextBoxFor(x => x.Name, new {@class = "form-control", @placeholder = "Name"})
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-12">
+            @Html.TextBoxFor(x => x.Address, new {@class = "form-control", @placeholder = "Addresss"})
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <a href="#" class="btn btn btn-success" onclick="LoginUser()">Login</a>
+
+    </div>
+</form>
+<script>
+    var LoginUser=function() {
+        var data = $("#myForm").serialize();
+        $.ajax({
+            type: "POST",
+            url: "/Test/Login",
+            data: data,
+            success:function(response) {
+                window.location.href = "/Test/WorkMultipleTble";
+              
+            }
+
+        })
+    }
+</script>

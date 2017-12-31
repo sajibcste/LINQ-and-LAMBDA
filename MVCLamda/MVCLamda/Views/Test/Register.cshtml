@@ -1,0 +1,56 @@
+﻿@model MVCLamda.Models.EmployeeViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Register</h2>
+
+<form id="myForm">
+
+    <div class="form-group">
+        <div class="col-sm-12">
+            @Html.DropDownListFor(x => x.DepartmentId, ViewBag.Datalist as SelectList, "..selectDepatment..", new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-12">
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @placeholder = "Name" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-12">
+            @Html.TextBoxFor(x => x.Gender, new { @class = "form-control", @placeholder = "Gender" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-12">
+            @Html.TextBoxFor(x => x.GradeId, new { @class = "form-control", @placeholder = "GradeId" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-12">
+            @Html.TextBoxFor(x => x.Address, new { @class = "form-control", @placeholder = "Addresss" })
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <a href="#" class="btn btn btn-primary" onclick="RegisterUsre()">Save</a>
+
+    </div>
+   
+
+</form>
+<script>
+    var RegisterUsre=function(){
+    var Data = $("#myForm").serialize();
+    $.ajax({
+        type: "POST",
+        ur: "/Test/Register",
+        data: Data,
+        success:function(response) {
+            alert("Data Saved");
+        }
+
+        })
+
+}
+    </script>

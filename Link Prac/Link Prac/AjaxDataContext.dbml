@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AjaxDB" Class="AjaxDataContextDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=PC-NET;Initial Catalog=AjaxDB;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="AjaxDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tbl_Department" Member="tbl_Departments">
+    <Type Name="tbl_Department">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Salary" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="tbl_Department_tbl_Employee" Member="tbl_Employees" ThisKey="Id" OtherKey="DepartmentId" Type="tbl_Employee" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_Grade" Member="tbl_Grades">
+    <Type Name="tbl_Grade">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="GradeName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Bonus" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="tbl_Grade_tbl_Employee" Member="tbl_Employees" ThisKey="Id" OtherKey="GradeId" Type="tbl_Employee" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_Employee" Member="tbl_Employees">
+    <Type Name="tbl_Employee">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Gender" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DepartmentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GradeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Association Name="tbl_Department_tbl_Employee" Member="tbl_Department" ThisKey="DepartmentId" OtherKey="Id" Type="tbl_Department" IsForeignKey="true" />
+      <Association Name="tbl_Grade_tbl_Employee" Member="tbl_Grade" ThisKey="GradeId" OtherKey="Id" Type="tbl_Grade" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

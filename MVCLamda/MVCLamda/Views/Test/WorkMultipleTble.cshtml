@@ -1,0 +1,191 @@
+﻿@model IEnumerable<MVCLamda.Models.EmployeeViewModel>
+@{
+    ViewBag.Title = "WorkMultipleTble";
+}
+
+<h2>WorkMultipleTble</h2>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+
+@*<div class="container" style="width:40%;margin-top:2%">*@
+    <div>
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>DepId</th>
+                <th>GradeId</th>
+                <th>Adress</th>
+                @*<th>DepartmentNmae</th>*@
+                <th></th>
+
+            </tr>
+            <tbody>
+            @foreach (var items in Model)
+            {
+                <tr id="row_@items.id">
+                    @*<td>@Html.ActionLink(items.Name, "EmployeDetails", new {em = items.id})</td>*@
+                    <td>@items.Name</td>
+                    <td>@items.Gender</td>
+                    <td>@items.DepartmentId</td>
+                    <td>@items.GradeId</td>
+
+                    <td>@items.Address</td>
+                    @*<td>@items.DepartmentName</td>*@
+                    <td><a href="#" class="btn btn-danger" onclick="ConfirmDelete(@items.id)"><i class="glyphicon glyphicon-trash"></i></a></td>
+                    <td ><a href="#" class="btn btn-succcess" onclick="showEmploye(@items.id)"><i class="glyphicon glyphicon-eye-open"></i></a></td>
+                    <td ><a href="#" class="btn btn-succcess" onclick="AddEditEmployee(@items.id)"><i class="glyphicon glyphicon-pencil"></i></a></td>
+                </tr>
+
+            }
+            </tbody>
+        </table>
+        <a href="#" class="btn-success" onclick="AddEditEmployee(0)">New</a>
+    </div>
+    @*<div class="container" style="width:40%;margin-top:2%">
+
+        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Open Modal</a>*@
+    @*<input type="hidden" id="inputHidden" />*@
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h3 class="modal-title">Delete Employee</h3>
+                </div>
+                <div class="modal-body" id="modalBodyDiv">
+                    <h4>Are you sure ? You want to delete this. </h4>
+
+                    <div style="text-align:center;display:none" id="loaderDiv">
+                        <img src="~/Content/InternetSlowdown_Day.gif" width="150" />
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                    <a href="#" class="btn btn-success" onclick="DeleteEmployee()">Confirm</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="modal fade" id="myModal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title">AddEdit Employee</h3>
+            </div>
+            <div class="modal-body" id="myModalBodyDiv1">
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+<input type="hidden" id="hiddenEmployeeId" />
+
+
+@*</div>*@
+
+
+
+    @*<script>
+            $(document).ready(function() {
+
+                $("#buttonsave").click(function() {
+                    $("#loaderDiv").show();
+
+                    debugger
+                    var data = $("#myForm").serialize();
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/Test/saveData",
+                        data: data,
+                        success: function(response) {
+
+                            alert("Data saved");
+                            $("#loaderDiv").hide();
+                            $("#myModal").modal("hide");
+                        }
+                    })
+                })
+            })
+        </script>*@
+
+    <script>
+
+    var ConfirmDelete = function (EmployeeId) {
+
+        $("#hiddenEmployeeId").val(EmployeeId);
+        $("#myModal").modal('show');
+
+    }
+
+    var DeleteEmployee = function () {
+
+        $("#loaderDiv").show();
+
+        var empId = $("#hiddenEmployeeId").val();
+
+        $.ajax({
+
+            type: "POST",
+            url: "/Test/Delete",
+            data: { EmployeeId: empId },
+            success: function (result) {
+                $("#loaderDiv").hide();
+                $("#myModal").modal("hide");
+                $("#row_" + empId).remove();
+
+            }
+
+        })
+
+    }
+    var showEmploye=function(emp) {
+        $.ajax({
+            type: "POST",
+            url: "/Test/ShowEmployee",
+            data: { Employeeid: emp },
+            success: function(response)
+            {
+            $("#modalBodyDiv").html(response);
+            $("#myModal").modal("show");
+    }
+
+        })
+    }
+
+    //var AddEditEmployee = function (employeeId) {
+
+    //    //var url = "/Test/AddEditEmployee?Employee=" + employeeId;
+
+    //    //$("#myModalBodyDiv1").load(url, function () {
+    //    //    $("#myModal1").modal("show");
+
+    //    //})
+
+    //}
+        var AddEditEmployee=function(emp) {
+        $.ajax({
+            type: "POST",
+             url: "/Test/AddEditEmployee",
+            data: { Employee: emp },
+            success: function (response) {
+                $("#myModalBodyDiv1").html(response);
+                $("#myModal1").modal("show");
+            }
+        })
+    }
+</script>

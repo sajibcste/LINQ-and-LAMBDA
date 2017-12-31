@@ -1,0 +1,32 @@
+﻿@model MVCLamda.Models.EmployeeViewModel
+<table class="table table-striped">
+
+    @if (ViewBag.emplist != null)
+    {
+        foreach (var items in ViewBag.emplist)
+        {
+            <tr>
+                <td>Name</td>
+                <td>@items.Name</td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td>@items.Gender</td>
+            </tr>
+            <tr>
+                <td>DepartmentId</td>
+                <td>@items.DepartmentId</td>
+            </tr>
+            <tr>
+                <td>GradeId</td>
+                <td>@items.GradeId</td>
+            </tr>
+            <tr>
+                <td>Addresss</td>
+                <td>@items.Address</td>
+            </tr>
+        }
+    }
+
+</table>
+

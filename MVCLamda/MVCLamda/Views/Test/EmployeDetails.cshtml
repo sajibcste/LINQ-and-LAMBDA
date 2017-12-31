@@ -1,0 +1,22 @@
+﻿@model MVCLamda.Models.EmployeeViewModel
+@{
+    ViewBag.Title = "EmployeDetails";
+}
+
+<h2>EmployeDetails</h2>
+
+<div>
+    <table class="table table-striped">
+        <tr>
+            <td>Name</td>
+            <td>Gender</td>
+            <td>Address</td>
+        </tr>
+        <tr>
+           <td>@Model.Name</td>
+           <td>@Model.Gender</td>
+           <td>@Model.Address</td>
+        </tr>
+
+    </table>
+</div>

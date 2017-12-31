@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="AjaxDataContext">
+  <DataContextMoniker Name="/AjaxDataContextDataContext" />
+  <nestedChildShapes>
+    <classShape Id="e23929bc-ae71-40e0-8e08-74f6a0eebcd4" absoluteBounds="5, 0.875, 2, 1.3862939453125">
+      <DataClassMoniker Name="/AjaxDataContextDataContext/tbl_Department" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6f2a954e-0908-4dc2-848e-7a5c7e51be33" absoluteBounds="5.0150000000000006, 1.335, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="337e7055-958f-4c4b-a3ae-2a9a5db9538a" absoluteBounds="0.5, 0.5, 2, 1.3862939453125">
+      <DataClassMoniker Name="/AjaxDataContextDataContext/tbl_Grade" />
+      <nestedChildShapes>
+        <elementListCompartment Id="34378bc3-7ad6-4ef9-9e88-6dd62566520b" absoluteBounds="0.51500000000000012, 0.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="62068643-3d4f-4530-9712-36fc0a310ec3" absoluteBounds="2.875, 0.5, 2, 1.9631982421875">
+      <DataClassMoniker Name="/AjaxDataContextDataContext/tbl_Employee" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d613a8a0-a47c-4d33-ad17-103525d9bcd1" absoluteBounds="2.8899999999999997, 0.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5 : 1.56814697265625); (4.875 : 1.56814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AjaxDataContextDataContext/tbl_Department/tbl_Department_tbl_Employee" />
+      <nodes>
+        <classShapeMoniker Id="e23929bc-ae71-40e0-8e08-74f6a0eebcd4" />
+        <classShapeMoniker Id="62068643-3d4f-4530-9712-36fc0a310ec3" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.5 : 1.19314697265625); (2.875 : 1.19314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AjaxDataContextDataContext/tbl_Grade/tbl_Grade_tbl_Employee" />
+      <nodes>
+        <classShapeMoniker Id="337e7055-958f-4c4b-a3ae-2a9a5db9538a" />
+        <classShapeMoniker Id="62068643-3d4f-4530-9712-36fc0a310ec3" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

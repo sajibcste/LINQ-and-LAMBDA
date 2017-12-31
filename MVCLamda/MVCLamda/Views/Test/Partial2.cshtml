@@ -1,0 +1,55 @@
+﻿
+@model MVCLamda.Models.EmployeeViewModel
+
+<div>
+    <form id="myForm">
+
+        @Html.HiddenFor(x => x.id);
+        @Html.DropDownListFor(x => x.DepartmentId, ViewBag.data as SelectList, "--select--", new { @class = "form-control" });
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        @Html.TextBoxFor(x => x.Gender, new { @class = "form-control" })
+        @Html.TextBoxFor(x => x.GradeId, new { @class = "form-control" })
+
+        @Html.TextBoxFor(x => x.Address, new { @class = "form-control" })
+
+
+        <a href="#" id="btnSubmit" class="btn btn-success btn-block">
+            @if (Model.id > 0)
+            {<span>Update</span> }
+            else
+            {<span>Save</span>}
+    </a>
+
+
+</form>
+</div>
+<div style="text-align:center;display:none" id="loaderDiv">
+    <img src="~/Content/InternetSlowdown_Day.gif" width="150" />
+</div>
+<script> 
+    
+    $(document).ready(function () {
+
+        $("#btnSubmit").click(function () {
+
+            $("#loaderDiv").show();
+
+            var myformdata = $("#myForm").serialize();
+
+            $.ajax({
+
+                type: "POST",
+                url: "/Test/Index",
+                data: myformdata,
+                success: function () {
+                    $("#loaderDiv").hide();
+                    $("#myModal").modal("hide");
+                    window.location.href = "/Test/WorkMultipleTble";
+
+                }
+
+            })
+        })
+
+    })
+</script>

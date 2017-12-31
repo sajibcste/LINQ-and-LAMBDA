@@ -1,0 +1,26 @@
+﻿@model MVCLamda.Models.EmployeeViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div>
+    @if (Model != null)
+    {
+
+        <ul class="list-group">
+         
+                <li class="list-group-item active">Employee Information</li>
+                <li class="list-group-item">Employee Name::<b>@Model.Name</b></li>
+                <li class="list-group-item">Gender::<b>@Model.Gender</b></li>
+                <li class="list-group-item">DepartmentId::<b>@Model.DepartmentId</b></li>
+                <li class="list-group-item">GradeId:<b>@Model.GradeId</b></li>
+                <li class="list-group-item">Adress:<b>@Model.Address</b></li>
+ 
+
+        </ul>  
+    }
+    
+</div>
+
